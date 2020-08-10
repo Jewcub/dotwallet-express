@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Jewcub/dotwallet-express/issues"
   },
-  "homepage": "https://github.com/Jewcub/dotwallet-express#readme"
+  "homepage": "https://github.com/Jewcub/dotwallet-express#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
 }
