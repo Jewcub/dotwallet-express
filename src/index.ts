@@ -67,4 +67,4 @@ class DotWallet {
   };
 }
 
-module.exports = DotWallet;
+export default DotWallet;
