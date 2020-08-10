@@ -15,6 +15,8 @@
  *}
  */
 const handleAuthResponse = (
+  APP_ID,
+  SECRET,
   redirectWithQueries = undefined,
   log = undefined
 ) => {
@@ -24,8 +26,8 @@ const handleAuthResponse = (
       const code = req.query.code;
       if (log) console.log('==============got code==============\n', code);
       const data = {
-        app_id: YOUR_APP_ID,
-        secret: YOUR_APP_SECRET,
+        app_id: APP_ID,
+        secret: SECRET,
         code: code,
       };
       if (log)
