@@ -1,10 +1,11 @@
 {
   "name": "dotwallet-express",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "middlewares for using dotwallet APIs in express",
-  "main": "index.js",
+  "main": "lib/index.t=js",
+  "files": ["lib/**/*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,16 @@
   },
   "homepage": "https://github.com/Jewcub/dotwallet-express#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "url": "^0.11.0"
   },
   "devDependencies": {
-    "express": "^4.17.1"
+    "@types/express": "^4.17.7",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "express": "^4.17.1",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
   }
 }
