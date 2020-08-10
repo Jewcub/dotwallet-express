@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+/** @var {string} APP_ID
+ * @
+ */
+const config = { APP_ID: undefined, SECRET: undefined };
+
 /**
  * @param { string } APP_ID
  * @param { string } SECRET
@@ -19,8 +24,8 @@ import axios from 'axios';
  *}
  */
 const handleAuthResponse = (
-  APP_ID,
-  SECRET,
+  APP_ID = config.APP_ID,
+  SECRET = config.SECRET,
   redirectWithQueries = undefined,
   log = undefined
 ) => {
@@ -99,4 +104,4 @@ const refreshAccess = async (refreshToken) => {
   }
 };
 
-module.exports = { handleAuthResponse, refreshAccess };
+module.exports = { config, handleAuthResponse, refreshAccess };
