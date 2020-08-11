@@ -72,4 +72,7 @@ class DotWallet {
   };
 }
 
-export default DotWallet;
+const caller = (appId: string, secret: string) => {
+  return new DotWallet(appId, secret);
+};
+export default caller;
