@@ -15,14 +15,14 @@ const app = express();
 import DotWallet from 'dotwallet-express';
 const dotwallet = new DotWallet(YOUR_APP_ID, YOUR_APP_SECRET);
 
-// send the authentication response
+// Handle the authentication response. Optionally redirect the browser to '/restricted-page'. Optionally pull out the user data and access tokens.
 app.get(
   '/auth',
-  dotwallet.handleAuthResponse('/restricted-page/').then((result) => {
+  dotwallet.handleAuthResponse('/restricted-page').then((result) => {
     const userData = result.userData;
     const refreshToken = result.accessData.refresh_token;
   }),
 );
-// refresh access token
+// Refresh access token
 dotwallet.refreshToken(refreshToken);
 ```
