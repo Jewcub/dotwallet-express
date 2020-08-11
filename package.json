@@ -1,8 +1,9 @@
 {
   "name": "dotwallet-express",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "middlewares for using dotwallet APIs in express",
-  "main": "lib/index.t=js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": ["lib/**/*"],
   "scripts": {
     "build": "tsc"
