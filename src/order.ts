@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as crypto from 'crypto';
 import * as md5 from 'md5';
-import { IOrderData } from './types';
+import { IOrderData, IOrderStatusInfo } from './types';
 function getSignature(orderData: any, appSecret: string) {
   let str = '';
   const secret = md5(appSecret);
@@ -54,9 +54,12 @@ export const getOrderStatus = (APP_ID: string, SECRET: string, log?: boolean) =>
         secret: SECRET,
         merchant_order_sn: merchant_order_sn,
       });
+      if (!orderStatusResponse.data) throw orderStatusResponse;
       const orderStatusData = orderStatusResponse.data;
       if (log) console.log('==============orderStatus==============\n', orderStatusData);
-      return orderStatusData;
+      if (!orderStatusData.data) throw orderStatusData;
+      const returnData: IOrderStatusInfo = orderStatusData.data;
+      return returnData;
     } catch (err) {
       if (log) console.log('==============err==============\n', err);
       return err;
