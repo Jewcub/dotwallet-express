@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import handleAuthResponse from './handleAuthResponse';
-import refreshAccess from './refreshAccess';
+import { handleAuthResponse, refreshAccess } from './auth';
+import { handleOrder, getOrderStatus } from './order';
 import { IAccessData, IUserData } from './types';
 
 class DotWallet {
@@ -14,11 +14,15 @@ class DotWallet {
     log?: boolean | undefined,
   ) => Promise<{ userData: IUserData; accessData: IAccessData } | undefined>;
   refreshAccess: (refreshToken: string) => Promise<IAccessData | Error | undefined>;
+  handleOrder: (orderData: any, log?: boolean | undefined) => Promise<string | Error | undefined>;
+  getOrderStatus: (merchant_order_sn: string) => Promise<object | Error | undefined>;
   constructor(appId: string, secret: string) {
     this.APP_ID = appId;
     this.SECRET = secret;
     this.handleAuthResponse = handleAuthResponse(this.APP_ID, this.SECRET);
     this.refreshAccess = refreshAccess(this.APP_ID);
+    this.handleOrder = handleOrder(this.APP_ID, this.SECRET);
+    this.getOrderStatus = getOrderStatus(this.APP_ID, this.SECRET);
   }
 }
 

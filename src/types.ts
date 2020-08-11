@@ -13,3 +13,13 @@ export interface IAccessData {
   expires_in: number;
   refresh_token: string;
 }
+
+export interface IOrderData {
+  app_id: string;
+  merchant_order_sn: string;
+  item_name: string;
+  order_amount: number;
+  nonce_str: string;
+  notice_uri: string;
+  redirect_uri: string;
+}
