@@ -12,17 +12,14 @@ npm install dotwallet-express
 const express = require('express');
 const app = express();
 
-import DotWallet from 'dotwallet-express';
-const dotwallet = new DotWallet(YOUR_APP_ID, YOUR_APP_SECRET);
-
+const DotWallet = require('dotwallet-express');
+const dotwallet = DotWallet('<YOUR_APP_ID>', '<YOUR_APP_SECRET>');
 // Handle the authentication response. Optionally redirect the browser to '/restricted-page'. Optionally pull out the user data and access tokens.
-app.get(
-  '/auth',
-  dotwallet.handleAuthResponse('/restricted-page').then((result) => {
-    const userData = result.userData;
-    const refreshToken = result.accessData.refresh_token;
-  }),
-);
+app.get('/auth', (req, res, next) => {
+  dotwallet
+    .handleAuthResponse(req, res, next, '/restricted-page/')
+    .then((result) => (refreshToken = result.accessData.refresh_token));
+});
 // Refresh access token
 dotwallet.refreshToken(refreshToken);
 ```
