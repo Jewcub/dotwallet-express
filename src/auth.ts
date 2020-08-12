@@ -4,11 +4,6 @@ import { Request, Response, NextFunction } from 'express';
 import { IAccessData, IUserData } from './types';
 
 export const handleAuthResponse = (APP_ID: string, SECRET: string) => {
-  /** @param redirectWithQueries If you'd like to have express send the response to redirect to a url, carrying the user data queries with it, than include a redirect URL string here
-   * @param log whether to log events
-   * @example app.get('/auth', Dotwallet.handleAuthResponse('/frontend-landing-page', true)); app.get('/auth', dotwallet.handleAuthResponse().then(result=>{const userData = result.userData; const accessToken = result.accessData.access_token;}));
-   * @returns {object} { userData: {user_open_id, ...}, accessData:{ refresh_token, expires_in, access_token }}
-   */
   return async (req: Request, res: Response, next: NextFunction, redirectWithQueries?: string, log?: boolean) => {
     // console.log('req, res', req, res);
     try {
@@ -46,11 +41,6 @@ export const handleAuthResponse = (APP_ID: string, SECRET: string) => {
   };
 };
 export const refreshAccess = (APP_ID: string) => {
-  /**
-   * @summary Use your refresh token to get back an access token and a new refresh token
-   * @param { string } refreshToken
-   * @returns { object|Error } { refresh_token, expires_in, access_token }
-   */
   return async (refreshToken: string): Promise<IAccessData | Error | undefined> => {
     try {
       const response = await axios.get(

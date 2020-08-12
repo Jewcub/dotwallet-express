@@ -1,11 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
-
 import { dataType } from './types';
+
 export const saveData = (APP_ID: string, SECRET: string) => {
-  /**
-   * @param {dataType} dataType 0 for string and 1 for rawhex. If you select 0 (the default) we will JSON.stringify() the data to be saved on chain
-   * @param {string|object} data JSON.stringify-able data if default, or rawhex string if rawhex
-   */
   return async (data: any, dataType: dataType = 0, log?: boolean) => {
     try {
       const saveDataOptions: AxiosRequestConfig = {
