@@ -61,3 +61,20 @@ export enum dataType {
   string,
   bitcoinRawHex,
 }
+
+export interface IGetHostedResponse {
+  address: string;
+  coin_type: string;
+}
+
+export interface IGetBalanceResponse {
+  confirm: number;
+  unconfirm: number;
+}
+
+export interface ISaveDataResponse {
+  fee: number;
+  params: any;
+  rawtx: string;
+  txid: string;
+}

@@ -33,9 +33,11 @@ export const handleOrder = (APP_ID: string, SECRET: string) => {
         ...orderData,
         sign: getSignature(orderData, SECRET),
       };
+      if (log) console.log('==============posting signed order==============\n', signedOrder);
+
       const orderSnResponse = await axios.post('https://www.ddpurse.com/platform/openapi/create_order', signedOrder);
       const orderSnData = orderSnResponse.data;
-      if (orderSnData.data && orderSnData.data.order_sn) {
+      if (orderSnData.data && orderSnData.data.order_sn && orderSnData.code === 0) {
         if (log) console.log('==============orderSnData==============', orderSnData);
         return orderSnData.data.order_sn;
       } else throw orderSnResponse;
@@ -47,7 +49,7 @@ export const handleOrder = (APP_ID: string, SECRET: string) => {
 };
 
 export const getOrderStatus = (APP_ID: string, SECRET: string, log?: boolean) => {
-  return async (merchant_order_sn: string): Promise<object | Error | undefined> => {
+  return async (merchant_order_sn: string): Promise<IOrderStatusInfo | Error | undefined> => {
     try {
       const orderStatusResponse = await axios.post('https://www.ddpurse.com/platform/openapi/search_order', {
         app_id: APP_ID,
@@ -57,7 +59,7 @@ export const getOrderStatus = (APP_ID: string, SECRET: string, log?: boolean) =>
       if (!orderStatusResponse.data) throw orderStatusResponse;
       const orderStatusData = orderStatusResponse.data;
       if (log) console.log('==============orderStatus==============\n', orderStatusData);
-      if (!orderStatusData.data) throw orderStatusData;
+      if (!orderStatusData.data || orderStatusData.code !== 0) throw orderStatusData;
       const returnData: IOrderStatusInfo = orderStatusData.data;
       return returnData;
     } catch (err) {

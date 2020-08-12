@@ -9,9 +9,11 @@ export const autopayment = (SECRET: string) => {
         ...orderData,
         secret: SECRET,
       };
+      if (log) console.log('==============posting order==============\n', orderWithSecret);
       const orderResponse = await axios.post('https://www.ddpurse.com/openapi/pay_small_money', orderWithSecret);
       const orderResponseData = orderResponse.data;
       if (log) console.log('==============orderResponseData==============', orderResponseData);
+      if (orderResponseData.code !== 0) throw orderResponse;
       if (orderResponseData.data) {
         const returnData: IOrderResponseData = orderResponseData.data;
         return returnData;
