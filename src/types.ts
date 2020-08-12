@@ -20,16 +20,20 @@ export interface IOrderData {
   item_name: string;
   order_amount: number;
   nonce_str: string;
-  notice_uri: string;
-  redirect_uri: string;
+  notice_uri?: string;
+  redirect_uri?: string;
+  opreturn?: string;
+  recieve_address?: string;
 }
 
 export interface IAutoPaymentOrder {
   app_id: string;
   merchant_order_sn: string;
-  item_name: string;
   pre_amount: number;
   user_open_id: string;
+  item_name: string;
+  opreturn?: string;
+  recieve_address?: string;
 }
 
 export interface IOrderResponseData {
