@@ -2,7 +2,7 @@
 
 express package for interacting with dotwallet APIs
 
-## to use
+## To use
 
 ```bash
 npm install dotwallet-express
@@ -33,3 +33,7 @@ app.post('/create-order', async (req, res) => {
   res.json({ order_sn });
 });
 ```
+
+## Examples
+
+See the examples folder in the package, and check out the `examples/simple-store/src/index.js` file.
