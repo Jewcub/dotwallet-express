@@ -1,9 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-enum dataType {
-  string,
-  bitcoinRawHex,
-}
+import { dataType } from './types';
 export const saveData = (APP_ID: string, SECRET: string) => {
   /**
    * @param {dataType} dataType 0 for string and 1 for rawhex. If you select 0 (the default) we will JSON.stringify() the data to be saved on chain

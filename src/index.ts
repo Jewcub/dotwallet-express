@@ -1,8 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { handleAuthResponse, refreshAccess } from './auth';
 import { handleOrder, getOrderStatus } from './order';
-import { IAccessData, IUserData, IAutoPaymentOrder } from './types';
+import { IAccessData, IUserData, IAutoPaymentOrder, dataType } from './types';
 import { autopayment } from './autopayment';
+import { saveData } from './saveData';
 
 class DotWallet {
   APP_ID: string;
@@ -18,6 +19,7 @@ class DotWallet {
   handleOrder: (orderData: any, log?: boolean | undefined) => Promise<string | Error | undefined>;
   getOrderStatus: (merchant_order_sn: string) => Promise<object | Error | undefined>;
   autopayment: (orderData: IAutoPaymentOrder, log?: boolean | undefined) => Promise<any>;
+  saveData: (data: any, dataType?: dataType, log?: boolean | undefined) => Promise<any>;
   constructor(appId: string, secret: string) {
     this.APP_ID = appId;
     this.SECRET = secret;
@@ -26,6 +28,7 @@ class DotWallet {
     this.handleOrder = handleOrder(this.APP_ID, this.SECRET);
     this.getOrderStatus = getOrderStatus(this.APP_ID, this.SECRET);
     this.autopayment = autopayment(this.SECRET);
+    this.saveData = saveData(this.APP_ID, this.SECRET);
   }
 }
 

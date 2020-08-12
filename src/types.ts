@@ -57,3 +57,7 @@ export interface IOrderStatusInfo {
   status: number;
   user_refund_address: string;
 }
+export enum dataType {
+  string,
+  bitcoinRawHex,
+}
