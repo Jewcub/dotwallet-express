@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IAutoPaymentOrder, IOrderResponseData } from './types';
 export const autopayment = (SECRET: string) => {
-  return async (orderData: IAutoPaymentOrder, log?: boolean) => {
+  return async (orderData: IAutoPaymentOrder, log?: boolean): Promise<IOrderResponseData | Error | undefined> => {
     try {
       // could add check here if recieve address is dev's own
       if (log) console.log('==============orderData==============\n', orderData);
